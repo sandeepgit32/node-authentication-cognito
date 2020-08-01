@@ -1,0 +1,24 @@
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #2e5e62;">
+    <div class="collapse navbar-collapse">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active border" style="margin-left: 20px">
+                <a class="nav-link" href="/" style="font-weight: 700;">Home</a>
+            </li>
+            <li class="nav-item active border" style="margin-left: 20px">
+                <a class="nav-link" href="/profile" style="font-weight: 700;">Profile</a>
+            </li>
+        </ul>
+    </div>
+    {{#if registered_email}}
+        <div class="col-md-6 text-right">
+            <span style="color:white;font-weight: 700;margin-left: 10px">{{registered_email}}</span>
+        </div>
+        <div style="float:right">
+            <a class="nav-link" href="/signout" style="color:white;font-weight: 700;margin-right: 20px">Sign-out</a>
+        </div>
+    {{else}}
+        <div class="col-md-6 text-right">
+            <a class="nav-link" href="/signin" style="color:white;font-weight: 700;margin-right: 10px">Sign-in</a>
+        </div>
+    {{/if}}
+</nav>
