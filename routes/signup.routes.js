@@ -3,6 +3,7 @@ var router = express.Router();
 const authService = require('../auth/authService');
 const { check, validationResult } = require('express-validator');
 
+
 router.get('/', (req, res) => {
     res.render('signup');
 });

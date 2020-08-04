@@ -51,26 +51,60 @@ exports.Signin = function (email, password, callback) {
 };
 
 
-// exports.Forgotpassword = function (email, callback) {
+exports.Forgotpassword = function(email, callback) {
 	
-//     var userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
+    var userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
 	
-//     var cognitoUser = new AmazonCognitoIdentity.CognitoUser({
-//         Username: email,
-//         Pool: userPool
-//     });
+    var cognitoUser = new AmazonCognitoIdentity.CognitoUser({
+        Username: email,
+        Pool: userPool
+    });
 		
-//     cognitoUser.forgotPassword({
-//         onSuccess: (result) => {
-//             callback(null, result);
-//         },
-//         onFailure: (err) => {
-// 			callback(err);
-//         },
-//         inputVerificationCode: () => {
-//             var verificationCode = prompt('Please input verification code ' ,'');
-//             var newPassword = prompt('Enter new password ' ,'');
-//             cognitoUser.confirmPassword(verificationCode, newPassword, this);
-//         }
-//     });
-// }
+    cognitoUser.forgotPassword({
+        onSuccess: (result) => {
+            callback(null, result);
+        },
+        onFailure: (err) => {
+			callback(err);
+        }
+    });
+}
+
+
+exports.Confirmpassword = function(verificationCode, email, newPassword, callback) {
+	
+    var userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
+	
+    var cognitoUser = new AmazonCognitoIdentity.CognitoUser({
+        Username: email,
+        Pool: userPool
+    });
+		
+    cognitoUser.confirmPassword(verificationCode, newPassword, {
+        onSuccess: (result) => {
+            callback(null, result);
+        },
+        onFailure: (err) => {
+			callback(err);
+        }
+    });
+}
+
+
+exports.ResendconfirmationCode = function(email, callback) {
+	
+    var userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
+	
+    var cognitoUser = new AmazonCognitoIdentity.CognitoUser({
+        Username: email,
+        Pool: userPool
+    });
+		
+    cognitoUser.resendConfirmationCode( function(err, result) {
+        if (err) {
+            callback(err);
+        } else {
+            callback(null, result);
+        }
+    });
+}

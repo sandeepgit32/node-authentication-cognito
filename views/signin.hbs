@@ -69,14 +69,15 @@
             style="background-color: #2e5e62;">Log in</button>
         </div>
         <div class="bottom-action clearfix">
-            {{!-- <label class="float-left form-check-label"><input type="checkbox"> Remember me</label> --}}
-            <a href="/reset_password" class="float-right">Forgot Password?</a>
-        </div>        
+            {{!-- <label class="float-left form-check-label"><input type="checkbox"> Remember me</label>  --}}
+            <a href="/forgotPassword" class="float-right">Forgot Password?</a>
+        </div>    
     </form>
     <p class="text-center small">Don't have an account! <a href="/signup">Sign up here</a>.</p>
     {{#if signin-error}}
         <p class="text-center small" style="color:orangered;">{{signin-error}}</p>
     {{/if}}
 </div>
+<script type="text/javascript" src="js/forgot_password.js">  </script>
 </body>
 </html>

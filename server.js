@@ -10,6 +10,8 @@ const signinRouter = require('./routes/signin.routes');
 const signupRouter = require('./routes/signup.routes');
 const confirmationRouter = require('./routes/confirmation.routes');
 const signoutRouter = require('./routes/signout.routes');
+const forgotPasswordRouter = require('./routes/forgot_password.routes');
+const resendCodeRouter = require('./routes/resendCode.routes');
 const authMiddleware = require('./middleware/authMiddleware');
 
 const app = express();
@@ -20,7 +22,7 @@ app.use(bodyParser.urlencoded({
 	extended: true
 }));
 
-app.use(express.static(__dirname + '/public'));
+// app.use(express.static(__dirname + '/public'));
 
 hbs.registerHelper('ifEquals', function (v1, v2, options) {
 	return (v1 == v2) ? options.fn(this) : options.inverse(this);
@@ -41,6 +43,8 @@ app.use("/signin", signinRouter);
 app.use("/signup", signupRouter);
 app.use("/confirmation", confirmationRouter);
 app.use("/signout", signoutRouter);
+app.use("/forgotPassword", forgotPasswordRouter);
+app.use("/resendCode", resendCodeRouter);
 
 /**
  * All other routes except for the above will render the 404_not_found page directly.

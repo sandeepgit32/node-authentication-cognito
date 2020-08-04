@@ -45,18 +45,19 @@ exports.Validate = function (req, res, next) {
                 if (!pem) {
                     console.log('Invalid token');
                     res.status(401);
-                    return res.send("Invalid token");
+                    res.render("401_unauthorized");
+                } else {
+                    jwt.verify(token, pem, function (err, payload) {
+                        if (err) {
+                            console.log("Invalid Token.");
+                            res.status(401);
+                            res.render("401_unauthorized");
+                        } else {
+                            console.log("Valid Token.");
+                            return next();
+                        }
+                    });
                 }
-                jwt.verify(token, pem, function (err, payload) {
-                    if (err) {
-                        console.log("Invalid Token.");
-                        res.status(401);
-                        res.render("401_unauthorized");
-                    } else {
-                        console.log("Valid Token.");
-                        return next();
-                    }
-                });
             }
         } else {
             console.log("Error! Unable to download JWKs");
