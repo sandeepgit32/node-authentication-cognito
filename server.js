@@ -3,6 +3,7 @@ const path = require("path");
 const hbs = require('hbs')
 const bodyParser = require('body-parser');
 var session = require('express-session')
+var cookieParser = require('cookie-parser');
 
 const homeRouter = require('./routes/home.routes');
 const profileRouter = require('./routes/profile.routes');
@@ -22,6 +23,7 @@ app.use(bodyParser.urlencoded({
 	extended: true
 }));
 
+app.use(cookieParser());
 // app.use(express.static(__dirname + '/public'));
 
 hbs.registerHelper('ifEquals', function (v1, v2, options) {

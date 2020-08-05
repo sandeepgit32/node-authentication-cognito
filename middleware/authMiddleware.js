@@ -9,7 +9,13 @@ const poolData = {
 };
 const pool_region = config.aws_config.region;
 
-
+/**
+ * This function is used as a middleware to validate the authorization of the user to access
+ * a particular resource.
+ * @param {Object} req - Request object
+ * @param {Object} res - Response object
+ * @param {Function} next 
+ */
 exports.Validate = function (req, res, next) {
     var token = req.session['Authorization'];
     request({
